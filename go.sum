@@ -1,0 +1,4 @@
+github.com/claudiocleberson/bookstore_users-api v0.0.0-20200504134302-751bc0638bcc h1:pkiQRIL/AVLuI1/8pM+3ls7Pb8Rj3Dfqg8jTVjdZ/RI=
+github.com/claudiocleberson/bookstore_users-api v0.0.0-20200504134302-751bc0638bcc/go.mod h1:EXPonqPj4joJt5DVyxW3j+d6268Knw+7HnvjIDWqMnI=
+github.com/go-sql-driver/mysql v1.5.0 h1:ozyZYNQW3x3HtqT1jira07DN2PArx2v7/mN66gGcHOs=
+github.com/go-sql-driver/mysql v1.5.0/go.mod h1:DCzpHaOWr8IXmIStZouvnhqoel9Qv2LBy8hT2VhHyBg=
