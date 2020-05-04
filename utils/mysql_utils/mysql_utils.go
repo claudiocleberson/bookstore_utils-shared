@@ -12,7 +12,7 @@ func ParseError(err error) *rest_err.RestErr {
 	sqlErr, ok := err.(*mysql.MySQLError)
 
 	if !ok {
-		return rest_err.NewInternalServerError(fmt.Sprintf("error when trying to save user: %s ", err.Error()))
+		return rest_err.NewInternalServerError(fmt.Sprintf("error when trying to save user: %s ", err.Error()), err)
 	}
 
 	switch sqlErr.Number {
@@ -20,6 +20,6 @@ func ParseError(err error) *rest_err.RestErr {
 		return rest_err.NewBadRequestError("email already exists")
 	}
 
-	return rest_err.NewInternalServerError(fmt.Sprintf("error processing request %s", sqlErr.Message))
+	return rest_err.NewInternalServerError(fmt.Sprintf("error processing request %s", sqlErr.Message), err)
 
 }
