@@ -1,4 +1,4 @@
-module claudiocleberson/bookstore_utils-shared
+module github.com/claudiocleberson/bookstore_utils-shared
 
 go 1.12
 

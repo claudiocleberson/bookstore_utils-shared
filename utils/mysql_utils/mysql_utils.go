@@ -1,8 +1,9 @@
 package mysql_utils
 
 import (
-	"claudiocleberson/bookstore_utils-shared/utils/rest_err"
 	"fmt"
+
+	"github.com/claudiocleberson/bookstore_utils-shared/utils/rest_err"
 
 	"github.com/go-sql-driver/mysql"
 )
