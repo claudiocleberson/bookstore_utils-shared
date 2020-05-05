@@ -41,6 +41,14 @@ func NewInternalServerError(message string, err error) *RestErr {
 	return returnErr
 }
 
+func NewRestError(message string, code int, err string) *RestErr {
+	return &RestErr{
+		Message: message,
+		Code:    code,
+		Error:   err,
+	}
+}
+
 func NewError(msg string) error {
 	return errors.New(msg)
 }
