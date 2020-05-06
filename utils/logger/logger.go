@@ -3,13 +3,15 @@ package logger
 import (
 	"fmt"
 	"os"
+	"strings"
 
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
 
 const (
-	envLogLevel = "LOG_LEVEL"
+	envLogLevel  = "LOG_LEVEL"
+	envLogOutput = "LOG_OUTPUT"
 )
 
 var (
@@ -17,7 +19,10 @@ var (
 )
 
 type bookstoreLogger interface {
+	//Implementation for elasticsearch
 	Printf(format string, v ...interface{})
+	//Implementation for MySql
+	Print(v ...interface{})
 }
 
 type logger struct {
@@ -27,7 +32,7 @@ type logger struct {
 func init() {
 
 	logConfig := zap.Config{
-		OutputPaths: []string{"stdout"},
+		OutputPaths: []string{getOutputPath()},
 		Level:       zap.NewAtomicLevelAt(getLevel()),
 		EncoderConfig: zapcore.EncoderConfig{
 			LevelKey:     "level",
@@ -52,7 +57,7 @@ func GetLogger() bookstoreLogger {
 
 func getLevel() zapcore.Level {
 
-	switch os.Getenv(envLogLevel) {
+	switch strings.TrimSpace(strings.ToLower(os.Getenv(envLogLevel))) {
 	case "info":
 		return zap.InfoLevel
 	case "error":
@@ -64,6 +69,21 @@ func getLevel() zapcore.Level {
 	}
 
 }
+
+func getOutputPath() string {
+
+	outputPath := strings.TrimSpace(strings.ToLower(os.Getenv(envLogOutput)))
+	if outputPath == "" {
+		return "stdout"
+	}
+	return outputPath
+
+}
+
+func (l logger) Print(v ...interface{}) {
+	Info(fmt.Sprintf("%v", v))
+}
+
 func (l logger) Printf(format string, v ...interface{}) {
 	if len(v) == 0 {
 		Info(format)
