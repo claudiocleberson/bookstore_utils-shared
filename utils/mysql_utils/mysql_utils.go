@@ -8,7 +8,7 @@ import (
 	"github.com/go-sql-driver/mysql"
 )
 
-func ParseError(err error) *rest_err.RestErr {
+func ParseError(err error) rest_err.RestErr {
 	sqlErr, ok := err.(*mysql.MySQLError)
 
 	if !ok {
