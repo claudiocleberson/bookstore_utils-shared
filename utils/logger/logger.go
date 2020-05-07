@@ -19,9 +19,9 @@ var (
 )
 
 type bookstoreLogger interface {
-	//Implementation for elasticsearch
+	//Interface Implementation for elasticsearch
 	Printf(format string, v ...interface{})
-	//Implementation for MySql
+	//Interface Implementation for MySql
 	Print(v ...interface{})
 }
 
