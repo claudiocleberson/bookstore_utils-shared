@@ -63,7 +63,7 @@ func NewInternalServerError(message string, err error) RestErr {
 	}
 
 	if err != nil {
-		returnErr.Causes = append(returnErr.causes, err.Error())
+		returnErr.causes = append(returnErr.causes, err.Error())
 	}
 	return returnErr
 }
