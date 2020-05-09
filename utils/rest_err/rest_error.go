@@ -1,6 +1,7 @@
 package rest_err
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
@@ -37,6 +38,14 @@ func (e restErr) Causes() []interface{} {
 func (r restErr) Error() string {
 	return fmt.Sprintf("message: %s - status: %d - error: %s - causes: [ %v ]",
 		r.message, r.code, r.error, r.causes)
+}
+
+func NewRestErrorFromBytes(bytes []bytes) (RestErr, error) {
+	var apiErr restErr
+	if err := json.Unmarshal(bytes, &apiErr); err != nil {
+		return nil, err
+	}
+	return apiErr, nil
 }
 
 func NewBadRequestError(message string) RestErr {
