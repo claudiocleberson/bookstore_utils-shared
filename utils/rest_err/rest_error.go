@@ -13,7 +13,7 @@ type RestErr interface {
 	Code() int
 	Error() string
 	Causes() []interface{}
-	ToJson() string
+	ToJson() interface{}
 }
 
 //Inteface implementation
