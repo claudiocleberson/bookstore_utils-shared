@@ -13,6 +13,7 @@ type RestErr interface {
 	Code() int
 	Error() string
 	Causes() []interface{}
+	ToJson() string
 }
 
 //Inteface implementation
@@ -38,6 +39,10 @@ func (e restErr) Causes() []interface{} {
 func (r restErr) Error() string {
 	return fmt.Sprintf("message: %s - status: %d - error: %s - causes: [ %v ]",
 		r.message, r.code, r.error, r.causes)
+}
+
+func (r restErr) ToJson() string {
+	return fmt.Sprintf(`"message": %s, "code": %d, "error": %v, "causes": %v`, r.message, r.code, r.error, r.causes)
 }
 
 func NewRestErrorFromBytes(bytes []byte) (RestErr, error) {
