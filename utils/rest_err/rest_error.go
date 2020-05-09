@@ -40,7 +40,7 @@ func (r restErr) Error() string {
 		r.message, r.code, r.error, r.causes)
 }
 
-func NewRestErrorFromBytes(bytes []bytes) (RestErr, error) {
+func NewRestErrorFromBytes(bytes []byte) (RestErr, error) {
 	var apiErr restErr
 	if err := json.Unmarshal(bytes, &apiErr); err != nil {
 		return nil, err
