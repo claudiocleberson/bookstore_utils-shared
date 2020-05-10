@@ -43,9 +43,12 @@ func (r restErr) Error() string {
 }
 
 func (r restErr) ToJson() interface{} {
-
 	bytes, _ := json.Marshal(r)
-	return string(bytes)
+	res := restErr{}
+	json.Unmarshal(bytes, &res)
+	return res
+	//bytes, _ := json.Marshal(r)
+	//return string(bytes)
 	//return fmt.Sprintf(`"message": %s, "code": %d, "error": %s, "causes": [ %v ]`, r.message, r.code, r.error, r.causes)
 	// return restErr{
 	// 	message: r.message,
