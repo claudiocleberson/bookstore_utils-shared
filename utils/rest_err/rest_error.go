@@ -43,17 +43,17 @@ func (r restErr) Error() string {
 }
 
 func (r restErr) ToJson() interface{} {
-	bytes, _ := json.Marshal(r)
-	//res := restErr{}
-	var dat map[string]interface{}
-	err := json.Unmarshal(bytes, &dat)
-	if err != nil {
-		return nil
-	}
-	return dat
+	// bytes, _ := json.Marshal(r)
+	// //res := restErr{}
+	// var dat map[string]interface{}
+	// err := json.Unmarshal(bytes, &dat)
+	// if err != nil {
+	// 	return nil
+	// }
+	// return dat
 	//bytes, _ := json.Marshal(r)
 	//return string(bytes)
-	//return fmt.Sprintf(`"message": %s, "code": %d, "error": %s, "causes": [ %v ]`, r.message, r.code, r.error, r.causes)
+	return fmt.Sprintf(`"message": %s, "code": %d, "error": %s, "causes": [ %v ]`, r.message, r.code, r.error, r.causes)
 	// return restErr{
 	// 	message: r.message,
 	// 	code:    r.code,
